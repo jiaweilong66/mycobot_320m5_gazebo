@@ -23,7 +23,7 @@ $ source devel/setup.bash
 ```
 
 
-MyCobot_280_m5-Gazebo User Guide
+MyCobot_320_m5-Gazebo User Guide
 1. Slider Control
 The control of the robot arm model's pose in Gazebo through the sliders of joint_state_publisher_gui has now been achieved. Moreover, the pose of the robot arm model in Gazebo and the real robot arm can be controlled simultaneously via the sliders.
 After confirming that the real robot arm is connected to the computer, check the port to which the robot arm is connected: 
@@ -158,4 +158,5 @@ Please go to [here](./READMECN.md).
 ![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/chinese.svg)   ![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/english.svg)
 
 [MyCobot 320m5gazebo中文操作](./READMECN.md)
+
 
