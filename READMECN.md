@@ -28,7 +28,7 @@ pip install pymycobot --user
 
 $ cd ~/catkin\_ws/src
 
-$ git clone https://github.com/jiaweilong66/mycobot\_ros.git
+$ git clone https://github.com/jiaweilong66/mycobot_320m5_gazebo.git
 
 $ cd ~/catkin\_ws
 
@@ -38,7 +38,7 @@ $ source devel/setup.bash
 
 ```
 
-MyCobot\_280\_m5-Gazebo使用说明
+MyCobot\_320\_m5-Gazebo使用说明
 
 1\. 滑块控制
 
@@ -116,11 +116,11 @@ ls /dev/tty\*
 
 sudo chmod -R 777 /dev/ttyACM0  or sudo chmod -r 777 /dev/ttyUSB0
 
-sudo chmod -R 777 mycobot\_ros/280m5\_gazebo\_gripper/scripts/follow\_display\_gazebo.py
+sudo chmod -R 777 mycobot_320m5_gazebo/mycobot_320m5_gripper_gazebo/scripts/follow\_display\_gazebo.py
 
-sudo chmod -R 777 mycobot\_ros/280m5\_gazebo\_gripper/scripts/slider\_control\_gazebo.py
+sudo chmod -R 777 mycobot_320m5_gazebo/mycobot_320m5_gripper_gazebo/scripts/slider\_control\_gazebo.py
 
-sudo chmod -R 777 mycobot\_ros/280m5\_gazebo\_gripper/scripts/teleop\_keyboard\_gazebo.py
+sudo chmod -R 777 mycobot_320m5_gazebo/mycobot_320m5_gripper_gazebo/scripts/teleop\_keyboard\_gazebo.py
 
 roscor
 
@@ -136,7 +136,7 @@ roscor
 
 source devel/setup.bash
 
-roslaunch 280m5\_gazebo\_gripper slider.launch \_port:=/dev/ttyACM0 \_baud:=115200
+roslaunch mycobot_320m5_gripper_gazebo slider.launch \_port:=/dev/ttyACM0 \_baud:=115200
 
 ```
 
@@ -150,7 +150,7 @@ roslaunch 280m5\_gazebo\_gripper slider.launch \_port:=/dev/ttyACM0 \_baud:=1152
 
 source devel/setup.bash
 
-rosrun 280m5\_gazebo\_gripper slider\_control\_gazebo.py \_port:=/dev/ttyACM0 \_baud:=115200
+rosrun mycobot_320m5_gripper_gazebo slider\_control\_gazebo.py \_port:=/dev/ttyACM0 \_baud:=115200
 
 ```
 
@@ -184,7 +184,7 @@ spin ...
 
 source devel/setup.bash
 
-roslaunch 280m5\_gazebo\_gripper follower.launch \_port:=/dev/ttyACM0
+roslaunch mycobot_320m5_gripper_gazebo follower.launch \_port:=/dev/ttyACM0
 
 ```
 
@@ -198,7 +198,7 @@ roslaunch 280m5\_gazebo\_gripper follower.launch \_port:=/dev/ttyACM0
 
 source devel/setup.bash
 
-rosrun 280m5\_gazebo\_gripper follow\_display\_gazebo.py \_port:=/dev/ttyACM0 \_baud:=115200
+rosrun mycobot_320m5_gripper_gazebo follow\_display\_gazebo.py \_port:=/dev/ttyACM0 \_baud:=115200
 
 ```
 
@@ -218,7 +218,7 @@ rosrun 280m5\_gazebo\_gripper follow\_display\_gazebo.py \_port:=/dev/ttyACM0 \_
 
 source devel/setup.bash
 
-roslaunch 280m5\_gazebo\_gripper teleop\_keyboard.launch \_port:=/dev/ttyACM0 \_baud:=115200
+roslaunch mycobot_320m5_gripper_gazebo teleop\_keyboard.launch \_port:=/dev/ttyACM0 \_baud:=115200
 
 ```
 
@@ -232,7 +232,7 @@ roslaunch 280m5\_gazebo\_gripper teleop\_keyboard.launch \_port:=/dev/ttyACM0 \_
 
 source devel/setup.bash
 
-rosrun 280m5\_gazebo\_gripper teleop\_keyboard\_gazebo.py \_port:=/dev/ttyACM0 \_baud:=115200
+rosrun mycobot_320m5_gripper_gazebo teleop\_keyboard\_gazebo.py \_port:=/dev/ttyACM0 \_baud:=115200
 
 ```
 
@@ -244,7 +244,7 @@ rosrun 280m5\_gazebo\_gripper teleop\_keyboard\_gazebo.py \_port:=/dev/ttyACM0 \
 
 ```shell
 
-Mycobot\_280\_m5\_gripper Teleop Keyboard Controller
+Mycobot\_320\_m5\_gripper Teleop Keyboard Controller
 
 ---------------------------
 
@@ -275,6 +275,7 @@ q - Quit
 
 
 根据上面的提示我们可以知道如何操控机械臂运动了，这里我设置每点击一下机械臂与Gazebo中的机械臂模型会运动1角度，可以尝试长按上述键位中的其中一个键来到达某一位姿。
+
 
 
 
