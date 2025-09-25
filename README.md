@@ -1,3 +1,28 @@
+### 本地 1.操作流程
+#### 1.1 安装前提
+要使用此包，需先安装[Python api](https://github.com/elephantrobotics/pymycobot.git)库。
+
+```bash
+pip install pymycobot --user
+ros1 noetic
+```
+
+#### 1.2安装320m5对应的ros镜像版本
+
+#### 1.3 包的下载与安装
+
+下载包到你的ros工作空间中
+
+```bash
+$ cd ~/catkin_ws/src
+$ git clone https://github.com/jiaweilong66/mycobot_320m5_gazebo.git
+$ cd ~/catkin_ws
+$ catkin_make
+$ source devel/setup.bash
+```
+#切换分支到visual
+
+#### 1.4 启动步骤
 #第一步：
 启动仿真环境：
 ```
@@ -16,3 +41,6 @@ rosrun vision_control demo.py
 source ./devel/setup.bash
 rosrun vision_control robot.py
 ```
+
+#启动现实仿真抓取
+pyhton grab.py
