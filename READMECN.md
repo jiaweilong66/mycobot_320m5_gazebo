@@ -1,10 +1,10 @@
-\### 本地 1.操作流程
+### 本地 1.操作流程
 
-\#### 1.1 安装前提
+#### 1.1 安装前提
 
 
 
-要使用此包，需先安装\[Python api](https://github.com/elephantrobotics/pymycobot.git)库。
+要使用此包，需先安装[Python api](https://github.com/elephantrobotics/pymycobot.git)库。
 
 
 
@@ -16,7 +16,7 @@ pip install pymycobot --user
 
 
 
-\#### 1.2 包的下载与安装
+#### 1.2 包的下载与安装
 
 
 
@@ -26,23 +26,19 @@ pip install pymycobot --user
 
 ```bash
 
-$ cd ~/catkin\_ws/src
-
+$ cd ~/catkin_ws/src
 $ git clone https://github.com/jiaweilong66/mycobot_320m5_gazebo.git
-
-$ cd ~/catkin\_ws
-
-$ catkin\_make
-
+$ cd ~/catkin_ws
+$ catkin_make
 $ source devel/setup.bash
 
 ```
 
-MyCobot\_320\_m5-Gazebo使用说明
+MyCobot_320_m5-Gazebo使用说明
 
-1\. 滑块控制
+1. 滑块控制
 
-现已实现通过joint\_state\_publisher\_gui的滑块控制机械臂模型在Gazebo中的位姿
+现已实现通过joint_state_publisher_gui的滑块控制机械臂模型在Gazebo中的位姿
 
 确认将真实的机械臂连接到电脑以后，查看机械臂连接的端口：
 
@@ -50,8 +46,7 @@ MyCobot\_320\_m5-Gazebo使用说明
 
 ```bash
 
-ls /dev/tty\*
-
+ls /dev/tty*
 /dev/ttyACM0 or /dev/ttyUSB0
 
 ```
@@ -115,12 +110,9 @@ ls /dev/tty\*
 ```bash
 
 sudo chmod -R 777 /dev/ttyACM0  or sudo chmod -r 777 /dev/ttyUSB0
-
-sudo chmod -R 777 mycobot_320m5_gazebo/mycobot_320m5_gripper_gazebo/scripts/follow\_display\_gazebo.py
-
-sudo chmod -R 777 mycobot_320m5_gazebo/mycobot_320m5_gripper_gazebo/scripts/slider\_control\_gazebo.py
-
-sudo chmod -R 777 mycobot_320m5_gazebo/mycobot_320m5_gripper_gazebo/scripts/teleop\_keyboard\_gazebo.py
+sudo chmod -R 777 mycobot_320m5_gazebo/mycobot_320m5_gripper_gazebo/scripts/follow_display_gazebo.py
+sudo chmod -R 777 mycobot_320m5_gazebo/mycobot_320m5_gripper_gazebo/scripts/slider_control_gazebo.py
+sudo chmod -R 777 mycobot_320m5_gazebo/mycobot_320m5_gripper_gazebo/scripts/teleop_keyboard_gazebo.py
 
 roscor
 
@@ -135,8 +127,7 @@ roscor
 ```bash
 
 source devel/setup.bash
-
-roslaunch mycobot_320m5_gripper_gazebo slider.launch \_port:=/dev/ttyACM0 \_baud:=115200
+roslaunch mycobot_320m5_gripper_gazebo slider.launch _port:=/dev/ttyACM0 _baud:=115200
 
 ```
 
@@ -149,8 +140,7 @@ roslaunch mycobot_320m5_gripper_gazebo slider.launch \_port:=/dev/ttyACM0 \_baud
 ```bash
 
 source devel/setup.bash
-
-rosrun mycobot_320m5_gripper_gazebo slider\_control\_gazebo.py \_port:=/dev/ttyACM0 \_baud:=115200
+rosrun mycobot_320m5_gripper_gazebo slider_control_gazebo.py _port:=/dev/ttyACM0 _baud:=115200
 
 ```
 
@@ -183,8 +173,7 @@ spin ...
 ```bash
 
 source devel/setup.bash
-
-roslaunch mycobot_320m5_gripper_gazebo follower.launch \_port:=/dev/ttyACM0
+roslaunch mycobot_320m5_gripper_gazebo follower.launch _port:=/dev/ttyACM0
 
 ```
 
@@ -197,8 +186,7 @@ roslaunch mycobot_320m5_gripper_gazebo follower.launch \_port:=/dev/ttyACM0
 ```bash
 
 source devel/setup.bash
-
-rosrun mycobot_320m5_gripper_gazebo follow\_display\_gazebo.py \_port:=/dev/ttyACM0 \_baud:=115200
+rosrun mycobot_320m5_gripper_gazebo follow_display_gazebo.py _port:=/dev/ttyACM0 _baud:=115200
 
 ```
 
@@ -208,7 +196,7 @@ rosrun mycobot_320m5_gripper_gazebo follow\_display\_gazebo.py \_port:=/dev/ttyA
 
 
 
-3\. 键盘控制
+3. 键盘控制
 
 我们还可以使用键盘输入的方式同时操控Gazebo中机械臂模型与实际机械臂的位姿，首先打开一个终端并输入：
 
@@ -217,8 +205,7 @@ rosrun mycobot_320m5_gripper_gazebo follow\_display\_gazebo.py \_port:=/dev/ttyA
 ```bash
 
 source devel/setup.bash
-
-roslaunch mycobot_320m5_gripper_gazebo teleop\_keyboard.launch \_port:=/dev/ttyACM0 \_baud:=115200
+roslaunch mycobot_320m5_gripper_gazebo follower.launch _port:=/dev/ttyACM0 _baud:=115200
 
 ```
 
@@ -231,8 +218,7 @@ roslaunch mycobot_320m5_gripper_gazebo teleop\_keyboard.launch \_port:=/dev/ttyA
 ```bash
 
 source devel/setup.bash
-
-rosrun mycobot_320m5_gripper_gazebo teleop\_keyboard\_gazebo.py \_port:=/dev/ttyACM0 \_baud:=115200
+rosrun mycobot_320m5_gripper_gazebo teleop_keyboard_gazebo.py _port:=/dev/ttyACM0 _baud:=115200
 
 ```
 
@@ -244,24 +230,18 @@ rosrun mycobot_320m5_gripper_gazebo teleop\_keyboard\_gazebo.py \_port:=/dev/tty
 
 ```shell
 
-Mycobot\_320\_m5\_gripper Teleop Keyboard Controller
+Mycobot_320m5_gripper_gazebo Teleop Keyboard Controller
 
 ---------------------------
 
 Movimg options (control the angle of each joint):
 
-w: joint2\_to\_joint1++   s: joint2\_to\_joint1--
-
-e: joint3\_to\_joint2++   d: joint3\_to\_joint2--
-
-r: joint4\_to\_joint3++   f: joint4\_to\_joint3--
-
-t: joint5\_to\_joint4++   g: joint5\_to\_joint4--
-
-y: joint6\_to\_joint5++   h: joint6\_to\_joint5--
-
-u: joint6output\_to\_joint6++ j: joint6output\_to\_joint6--
-
+w: joint2_to_joint1++   s: joint2_to_joint1--
+e: joint3_to_joint2++   d: joint3_to_joint2--
+r: joint4_to_joint3++   f: joint4_to_joint3--
+t: joint5_to_joint4++   g: joint5_to_joint4--
+y: joint6_to_joint5++   h: joint6_to_joint5--
+u: joint6output_to_joint6++ j: joint6output_to_joint6--
 o:open gripper          p:close gripper
 
 Other:
@@ -275,6 +255,7 @@ q - Quit
 
 
 根据上面的提示我们可以知道如何操控机械臂运动了，这里我设置每点击一下机械臂与Gazebo中的机械臂模型会运动1角度，可以尝试长按上述键位中的其中一个键来到达某一位姿。
+
 
 
 
