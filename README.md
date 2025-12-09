@@ -41,8 +41,3 @@ rosrun vision_control demo.py
 source ./devel/setup.bash
 rosrun vision_control robot.py
 ```
-
-#启动现实仿真抓取
-```
-pyhton grab.py
-```
