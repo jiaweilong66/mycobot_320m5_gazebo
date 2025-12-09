@@ -41,7 +41,7 @@ The following output results are obtained:
 /dev/tty1   /dev/tty28  /dev/tty46  /dev/tty7       /dev/ttyS22
 /dev/tty10  /dev/tty29  /dev/tty47  /dev/tty8       /dev/ttyS23
 /dev/tty11  /dev/tty3   /dev/tty48  /dev/tty9       /dev/ttyS24
-/dev/tty12  /dev/tty30  /dev/tty49  /dev/ttyACM0   (/dev/ttyUSB0)
+/dev/tty12  /dev/tty30  /dev/tty49  /dev/ttyACM0    /dev/ttyUSB0
 /dev/tty13  /dev/tty31  /dev/tty5   /dev/ttyprintk  /dev/ttyS26
 /dev/tty14  /dev/tty32  /dev/tty50  /dev/ttyS0      /dev/ttyS27
 /dev/tty15  /dev/tty33  /dev/tty51  /dev/ttyS1      /dev/ttyS28
@@ -158,6 +158,7 @@ Please go to [here](./READMECN.md).
 ![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/chinese.svg)   ![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/english.svg)
 
 [MyCobot 320m5gazebo中文操作](./READMECN.md)
+
 
 
 
