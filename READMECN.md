@@ -69,7 +69,7 @@ ls /dev/tty*
 
 /dev/tty11  /dev/tty3   /dev/tty48  /dev/tty9       /dev/ttyS24
 
-/dev/tty12  /dev/tty30  /dev/tty49  /dev/ttyACM0   (/dev/ttyUSB0)
+/dev/tty12  /dev/tty30  /dev/tty49  /dev/ttyACM0    /dev/ttyUSB0
 
 /dev/tty13  /dev/tty31  /dev/tty5   /dev/ttyprintk  /dev/ttyS26
 
@@ -255,6 +255,7 @@ q - Quit
 
 
 根据上面的提示我们可以知道如何操控机械臂运动了，这里我设置每点击一下机械臂与Gazebo中的机械臂模型会运动1角度，可以尝试长按上述键位中的其中一个键来到达某一位姿。
+
 
 
 
