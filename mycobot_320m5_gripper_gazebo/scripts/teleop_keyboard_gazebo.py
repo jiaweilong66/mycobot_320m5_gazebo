@@ -204,7 +204,7 @@ def initialize_gripper():
         rospy.loginfo("尝试初始化Pro力控夹爪...")
         
         # 检查夹爪是否存在
-        version = mc.get_pro_gripper(GRIPPER_ID, 1)
+        version = mc.get_pro_gripper(1, GRIPPER_ID)
         if version == -1:
             rospy.logwarn("未检测到Pro力控夹爪")
             return False
@@ -248,7 +248,7 @@ def set_gripper_angle(angle):
         
         # 尝试使用Pro夹爪角度设置 (修正参数个数)
         try:
-            mc.set_pro_gripper_angle(GRIPPER_ID, angle)
+            mc.set_pro_gripper_angle(angle, GRIPPER_ID)
             rospy.logdebug(f"Pro夹爪角度设置成功: {angle}°")
             return True
         except TypeError as te:
