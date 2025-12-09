@@ -16,11 +16,12 @@ ros1 noetic
 ```bash
 $ cd ~/catkin_ws/src
 $ git clone https://github.com/jiaweilong66/mycobot_320m5_gazebo.git
-$ cd ~/catkin_ws
+$ cd ~/catkin_ws/mycobot_320m5_gazebo
+$ git checkout visual
+$ cd ..
 $ catkin_make
 $ source devel/setup.bash
 ```
-#切换分支到visual
 
 #### 1.4 启动步骤
 #第一步：
