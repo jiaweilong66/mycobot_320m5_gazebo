@@ -46,10 +46,11 @@ GRIPPER_LIMITS = (-62, 62)  # 夹爪角度限制
 
 # 夹爪配置 - MyCobot320 Pro力控夹爪
 GRIPPER_ID = 14             # 确保是整数
-GRIPPER_MIN_ANGLE = -100.0   
-GRIPPER_MAX_ANGLE = 100    
-GAZEBO_MIN_POSITION = -60.0  
-GAZEBO_MAX_POSITION = 60.0   
+GRIPPER_MIN_ANGLE = 0.0     # 夹爪最小角度（关闭）
+GRIPPER_MAX_ANGLE = 100.0   # 夹爪最大角度（打开）
+# Gazebo滑块的实际角度范围（根据实际测试结果）
+GAZEBO_MIN_POSITION = 0.0    # Gazebo滑块最小位置（滑块=0，对应夹爪关闭0°）
+GAZEBO_MAX_POSITION = 57.3   # Gazebo滑块最大位置（滑块=最大，对应夹爪打开100°）   
 
 # 状态记录
 last_angles = None
@@ -289,7 +290,7 @@ def initialize_gripper():
         rospy.loginfo("[夹爪] 尝试初始化Pro力控夹爪...")
         
         # 检查夹爪是否存在
-        version = mc.get_pro_gripper(GRIPPER_ID, 1)
+        version = mc.get_pro_gripper(1, GRIPPER_ID)
         if version == -1:
             rospy.logwarn("[夹爪] 未检测到Pro力控夹爪")
             return False
@@ -325,8 +326,8 @@ def set_gripper_angle_320(angle):
     try:
         # 尝试使用Pro力控夹爪角度设置 (只传递2个参数)
         try:
-            mc.set_pro_gripper_angle(GRIPPER_ID, mapped_angle)
-            rospy.loginfo(f"[夹爪] Pro力控夹爪设置成功: {angle:.1f}° -> {mapped_angle:.1f}°")
+            mc.set_pro_gripper_angle(mapped_angle, GRIPPER_ID)
+            rospy.logdebug(f"[夹爪] Pro力控夹爪设置成功: 真实夹爪={mapped_angle}°")
             return True
         except TypeError as te:
             rospy.logwarn(f"[夹爪] set_pro_gripper_angle参数错误: {te}")
@@ -334,12 +335,12 @@ def set_gripper_angle_320(angle):
             # 根据映射角度判断开关状态
             if mapped_angle >= 90:
                 mc.set_gripper_state(1, 80)  # 状态1 = 打开
-                rospy.loginfo(f"[夹爪] 状态控制: 打开 (映射角度: {mapped_angle:.1f}°)")
+                rospy.loginfo(f"[夹爪] 状态控制: 打开 (真实夹爪角度: {mapped_angle}°)")
             elif mapped_angle <= 10:
                 mc.set_gripper_state(0, 80)  # 状态0 = 关闭
-                rospy.loginfo(f"[夹爪] 状态控制: 关闭 (映射角度: {mapped_angle:.1f}°)")
+                rospy.loginfo(f"[夹爪] 状态控制: 关闭 (真实夹爪角度: {mapped_angle}°)")
             else:
-                rospy.logwarn(f"[夹爪] 中间角度 {mapped_angle:.1f}° 无法用状态控制")
+                rospy.logwarn(f"[夹爪] 中间角度 {mapped_angle}° 无法用状态控制")
             return True
             
     except Exception as e:
@@ -371,15 +372,21 @@ def command_executor():
                     
                 elif command.type == 'gripper':
                     # 发送夹爪命令
-                    gripper_angle = command.data
+                    gripper_angle = command.data  # 这是Gazebo角度
                     
-                    rospy.loginfo(f"[slider_control] 🤏 执行夹爪命令: {gripper_angle:.1f}°")
+                    # 计算映射后的夹爪角度用于显示
+                    mapped_angle = ((gripper_angle - GAZEBO_MIN_POSITION) / 
+                                   (GAZEBO_MAX_POSITION - GAZEBO_MIN_POSITION)) * \
+                                  (GRIPPER_MAX_ANGLE - GRIPPER_MIN_ANGLE) + GRIPPER_MIN_ANGLE
+                    mapped_angle = max(0, min(100, mapped_angle))
+                    
+                    rospy.loginfo(f"[slider_control] 🤏 执行夹爪命令: Gazebo={gripper_angle:.1f}° → 真实夹爪={mapped_angle:.1f}°")
                     
                     if set_gripper_angle_320(gripper_angle):
                         last_gripper_angle = gripper_angle
-                        rospy.loginfo(f"[slider_control] ✅ 夹爪控制成功: {gripper_angle:.1f}°")
+                        rospy.loginfo(f"[slider_control] ✅ 夹爪控制成功: 真实夹爪={mapped_angle:.1f}°")
                     else:
-                        rospy.logwarn(f"[slider_control] ❌ 夹爪控制失败: {gripper_angle:.1f}°")
+                        rospy.logwarn(f"[slider_control] ❌ 夹爪控制失败")
                         stats['errors'] += 1
                 
                 stats['commands_sent'] += 1
