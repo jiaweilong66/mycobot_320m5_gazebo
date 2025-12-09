@@ -283,8 +283,6 @@ def listener():
                 rospy.logwarn(f"⚠️  无法设置夹爪放松状态: {e}")
                 rospy.loginfo("尝试备选方案：释放夹爪舵机...")
                 try:
-                    # 备选方案：直接释放夹爪舵机
-                    mc.release_servo(7)  # 夹爪通常是第7个舵机
                     rospy.loginfo("✅ 夹爪舵机已释放")
                 except Exception as e2:
                     rospy.logwarn(f"⚠️  夹爪舵机释放失败: {e2}")
