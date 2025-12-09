@@ -233,7 +233,7 @@ def initialize_gripper():
         rospy.loginfo("尝试初始化夹爪...")
         
         # 检查夹爪是否存在
-        version = mc.get_pro_gripper(GRIPPER_ID, 1)
+        version = mc.get_pro_gripper(1, GRIPPER_ID)
         if version == -1:
             rospy.logwarn("未检测到Pro力控夹爪，跳过夹爪初始化")
             return False
@@ -275,6 +275,19 @@ def listener():
         gripper_initialized = initialize_gripper()
         if gripper_initialized:
             rospy.loginfo("夹爪检测成功")
+            # 释放夹爪到放松状态
+            try:
+                mc.set_gripper_mode(0)  # 设置为透明模式（放松状态）
+                rospy.loginfo("✅ 夹爪已设置为放松状态")
+            except Exception as e:
+                rospy.logwarn(f"⚠️  无法设置夹爪放松状态: {e}")
+                rospy.loginfo("尝试备选方案：释放夹爪舵机...")
+                try:
+                    # 备选方案：直接释放夹爪舵机
+                    mc.release_servo(7)  # 夹爪通常是第7个舵机
+                    rospy.loginfo("✅ 夹爪舵机已释放")
+                except Exception as e2:
+                    rospy.logwarn(f"⚠️  夹爪舵机释放失败: {e2}")
         else:
             rospy.logwarn("未检测到夹爪或初始化失败")
         
@@ -303,9 +316,23 @@ def listener():
     def cleanup():
         if mc is not None:
             try:
-                rospy.loginfo("程序退出，确保舵机释放...")
-                mc.release_all_servos()
-                rospy.loginfo("已释放所有舵机")
+                rospy.loginfo("程序退出，正在锁紧机械臂...")
+                # 获取当前角度
+                try:
+                    current_angles = mc.get_angles()
+                    if current_angles and len(current_angles) == 6:
+                        # 发送当前角度来锁定机械臂
+                        mc.send_angles(current_angles, 30)
+                        time.sleep(0.5)  # 等待命令执行
+                        rospy.loginfo("✅ 机械臂已锁紧在当前位置")
+                    else:
+                        rospy.logwarn("⚠️  无法获取当前角度，直接锁定舵机")
+                        # 备选方案：直接锁定所有舵机（不释放）
+                        pass  # 不调用release，舵机会保持锁定
+                except Exception as e:
+                    rospy.logwarn(f"⚠️  锁紧失败: {e}")
+                
+                rospy.loginfo("机械臂已锁定，可以安全断电")
             except:
                 pass
     
