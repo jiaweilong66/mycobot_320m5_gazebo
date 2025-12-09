@@ -68,7 +68,7 @@ sudo chmod -R 777 mycobot_320m5_gazebo/mycobot_320m5_gripper_gazebo/scripts/tele
 roscore
 ```
 
-After confirming the port, open a terminal and enter the following command. Note that you should replace "port" with the value you found in the previous step. 
+After confirming the port, open a terminal in workspace and enter the following command. Note that you should replace "port" with the value you found in the previous step. 
 
 ```bash
 source devel/setup.bash
@@ -76,7 +76,7 @@ roslaunch mycobot_320m5_gripper_gazebo slider.launch _port:=/dev/ttyACM0 _baud:=
 ```
 
 
-Then open another terminal and enter the following command: 
+Then open another terminal in workspace and enter the following command: 
 
 ```bash
 source devel/setup.bash
@@ -158,5 +158,6 @@ Please go to [here](./READMECN.md).
 ![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/chinese.svg)   ![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/english.svg)
 
 [MyCobot 320m5gazebo中文操作](./READMECN.md)
+
 
 
