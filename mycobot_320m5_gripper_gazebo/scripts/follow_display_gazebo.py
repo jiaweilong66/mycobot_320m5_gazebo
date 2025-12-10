@@ -277,12 +277,13 @@ def listener():
             rospy.loginfo("夹爪检测成功")
             # 释放夹爪到放松状态
             try:
-                mc.set_pro_gripper(14,10,0)  # 设置为透明模式（放松状态）
+                mc.set_pro_gripper(10,0,14)  # 设置为透明模式（放松状态）
                 rospy.loginfo("✅ 夹爪已设置为放松状态")
             except Exception as e:
                 rospy.logwarn(f"⚠️  无法设置夹爪放松状态: {e}")
                 rospy.loginfo("尝试备选方案：释放夹爪舵机...")
                 try:
+                    mc.set_pro_gripper(14,10,0)
                     rospy.loginfo("✅ 夹爪舵机已释放")
                 except Exception as e2:
                     rospy.logwarn(f"⚠️  夹爪舵机释放失败: {e2}")
