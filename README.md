@@ -7,6 +7,7 @@ To use this package, you need to install the [Python API](https://github.com/ele
 pip install pymycobot --user
 ros1 noetic
 gazebo 11
+pymycobot 4.0.3
 ```
 
 
@@ -158,6 +159,7 @@ Please go to [here](./READMECN.md).
 ![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/chinese.svg)   ![jaywcjlove/sb](https://jaywcjlove.github.io/sb/lang/english.svg)
 
 [MyCobot 320m5gazebo中文操作](./READMECN.md)
+
 
 
 
